@@ -185,6 +185,13 @@ Other third-party libraries exist to provide storage backends for cloud object s
 
 NOTE: Soon we will have a better documentation.
 
+Use custom jQuery version
+---------------------
+
+.. code-block:: python
+
+    REDACTOR_OPTIONS = {'jquery': 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js'}
+    
 Contributing
 ------------
 
