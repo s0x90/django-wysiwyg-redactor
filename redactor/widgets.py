@@ -47,18 +47,21 @@ class RedactorEditor(widgets.Textarea):
         return mark_safe(html)
 
     def _media(self):
-        js = (
+        js = []
+
+        if self.options.get('jquery'):
+            js.append(self.options.get('jquery'))
+
+        js.extend([
             'redactor/jquery.redactor.init.js',
             'redactor/redactor{0}.js'.format('' if settings.DEBUG else '.min'),
             'redactor/langs/{0}.js'.format(GLOBAL_OPTIONS.get('lang', 'en')),
-        )
+        ])
 
         if 'plugins' in self.options:
             plugins = self.options.get('plugins')
             for plugin in plugins:
-                js = js + (
-                    'redactor/plugins/{0}.js'.format(plugin),
-                )
+                js.append('redactor/plugins/{0}.js'.format(plugin))
 
         css = {
             'all': (
